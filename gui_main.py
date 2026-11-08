@@ -69,7 +69,7 @@ class DiaryApp(ctk.CTk):
         self.current_frame = ctk.CTkFrame(self, fg_color="#0f172a")
         self.current_frame.pack(expand=True, fill="both")
 
-        # --- КАРТОЧКА ВХОДА ---
+        # ВХОД
         login_box = ctk.CTkFrame(self.current_frame, width=400, height=500, 
                                  fg_color="#1e293b", corner_radius=15)
         login_box.place(relx=0.5, rely=0.5, anchor="center")
@@ -442,7 +442,6 @@ class DiaryApp(ctk.CTk):
 
         student_strings = [f"{s.full_name} {s.name} (гр. {getattr(s, 'group_num', 1)})" for s in self.group.list_students]
         
-        # ДОБАВЛЕН state="readonly"
         combo_student = ctk.CTkComboBox(window, values=student_strings, width=300, height=40, 
                                         fg_color="#0f172a", border_color="#334155", state="readonly")
         combo_student.pack(pady=10)
@@ -490,7 +489,6 @@ class DiaryApp(ctk.CTk):
             ctk.CTkButton(bottom_frame, text="👥 Моя группа", font=("Segoe UI", 16, "bold"), fg_color="#3b82f6", hover_color="#2563eb", corner_radius=8, height=45, width=200, command=lambda: self.show_my_group_gui(student)).pack(side="left", padx=10)
             ctk.CTkButton(bottom_frame, text="↩ Назад", font=("Segoe UI", 16, "bold"), fg_color="#475569", hover_color="#64748b", corner_radius=8, height=45, width=200, command=self.show_student_menu).pack(side="left", padx=10)
 
-        # КОНТЕЙНЕР ДЛЯ ТАБЛИЦЫ (используем ту же маскировку скроллбара)
         table_container = ctk.CTkFrame(self.current_frame, fg_color="#1e293b", corner_radius=15)
         table_container.pack(fill="both", expand=True, padx=80, pady=10)
 
@@ -609,7 +607,7 @@ class DiaryApp(ctk.CTk):
 
                 ctk.CTkLabel(card, text=score_text, font=("Segoe UI", 18, "bold"), text_color=score_text_color, fg_color=score_bg, width=60, height=35, corner_radius=8).grid(row=0, column=3, padx=(10, 20), pady=15, sticky="e")
             else:
-                # ФИКС БЕЗОПАСНОСТИ: Проверяем, есть ли оценки, прежде чем давать статус
+                # Проверяем, есть ли оценки, прежде чем давать статус
                 if place <= 3 and avg_score > 0:
                     status_text = "Отличник" if avg_score >= 4.5 else "Хорошист"
                     ctk.CTkLabel(card, text=status_text, font=("Segoe UI", 14, "italic"), text_color="#94a3b8").grid(row=0, column=3, padx=(10, 20), pady=15, sticky="e")
@@ -778,7 +776,7 @@ class DiaryApp(ctk.CTk):
         entry_age = create_field(form_frame, "Возраст")
         entry_course = create_field(form_frame, "Курс")
 
-        def try_login(event=None): # Добавили event=None, чтобы функция не падала при вызове через bind
+        def try_login(event=None):
             f_name = entry_full_name.get().strip().capitalize()
             name = entry_name.get().strip().capitalize()
             
@@ -797,9 +795,10 @@ class DiaryApp(ctk.CTk):
             
             messagebox.showerror("Ошибка", "Ученик с такими данными не найден!\nПроверьте правильность ввода.")
 
-        entry_full_name.focus_set() # Сразу ставим курсор в Фамилию
+        # Сразу ставим курсор в Фамилию
+        entry_full_name.focus_set()
 
-        # При нажатии Enter переводим курсор на следующее поле (используем lambda)
+        # При нажатии Enter переводим курсор на следующее поле
         entry_full_name.bind("<Return>", lambda e: entry_name.focus_set())
         entry_name.bind("<Return>", lambda e: entry_age.focus_set())
         entry_age.bind("<Return>", lambda e: entry_course.focus_set())
@@ -825,7 +824,7 @@ class DiaryApp(ctk.CTk):
                       border_width=1.5, text_color="#ef4444", hover_color="#1e293b", corner_radius=8,
                       command=self.exit_app).pack(side="left", padx=15)
 
-# --- БЛОК ЗАПУСКА ---
+# БЛОК ЗАПУСКА
 if __name__ == "__main__":
     app = DiaryApp()
     app.mainloop()
