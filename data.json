@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Й",
+        "full_name": "Й",
+        "age": 16,
+        "course": 1,
+        "group_num": 1,
+        "grades": {
+            "math": [
+                5,
+                4
+            ],
+            "phys": [],
+            "eng": [],
+            "inf": [
+                5
+            ]
+        }
+    },
+    {
+        "name": "Йй",
+        "full_name": "Йй",
+        "age": 16,
+        "course": 1,
+        "group_num": 1,
+        "grades": {
+            "math": [],
+            "phys": [],
+            "eng": [],
+            "inf": []
+        }
+    }
+]
