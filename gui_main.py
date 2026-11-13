@@ -19,7 +19,7 @@ class DiaryApp(ctk.CTk):
         self.active_window = None
         
         self.title("Электронный дневник")
-        self.configure(fg_color="#0f172a")
+        self.configure(fg_color="#09090b")
         
         # 1. Задаем нормальный стартовый размер
         self.geometry("1100x700")
@@ -66,12 +66,12 @@ class DiaryApp(ctk.CTk):
         self.clear_screen()
         self.is_teacher_mode = False 
         
-        self.current_frame = ctk.CTkFrame(self, fg_color="#0f172a")
+        self.current_frame = ctk.CTkFrame(self, fg_color="#09090b")
         self.current_frame.pack(expand=True, fill="both")
 
         # ВХОД
         login_box = ctk.CTkFrame(self.current_frame, width=400, height=500, 
-                                 fg_color="#1e293b", corner_radius=15)
+                                 fg_color="#18181b", corner_radius=15)
         login_box.place(relx=0.5, rely=0.5, anchor="center")
 
         label = ctk.CTkLabel(login_box, text="Вход в систему", font=("Segoe UI", 32, "bold"), 
@@ -83,7 +83,7 @@ class DiaryApp(ctk.CTk):
         label_sub.pack(pady=(0, 30))
 
         btn_teacher = ctk.CTkButton(login_box, text="Войти как Учитель", font=("Segoe UI", 20, "bold"),
-                                    width=300, height=60, fg_color="#3b82f6", hover_color="#2563eb", corner_radius=10,
+                                    width=300, height=60, fg_color="#6366f1", hover_color="#4f46e5", corner_radius=10,
                                     command=self.login_teacher)
         btn_teacher.pack(pady=15)
 
@@ -94,7 +94,7 @@ class DiaryApp(ctk.CTk):
 
         btn_exit = ctk.CTkButton(login_box, text="Выйти из программы", font=("Segoe UI", 16, "bold"),
                                  width=300, height=40, fg_color="transparent", border_color="#ef4444", 
-                                 border_width=2, text_color="#ef4444", hover_color="#1e293b", corner_radius=10,
+                                 border_width=2, text_color="#ef4444", hover_color="#18181b", corner_radius=10,
                                  command=self.exit_app)
         btn_exit.pack(pady=(30, 20))
 
@@ -107,13 +107,13 @@ class DiaryApp(ctk.CTk):
         self.active_window = window
         window.title("Авторизация")
         self.center_window(window, 350, 260)
-        window.configure(fg_color="#1e293b")
+        window.configure(fg_color="#18181b")
         window.attributes("-topmost", True)
         window.protocol("WM_DELETE_WINDOW", lambda: self.close_active_window(window))
         
         ctk.CTkLabel(window, text="Введите пароль учителя:", font=("Segoe UI", 16, "bold"), text_color="#f8fafc").pack(pady=(25, 10))
 
-        entry_pwd = ctk.CTkEntry(window, width=250, show="*", fg_color="#0f172a", border_color="#3b82f6")
+        entry_pwd = ctk.CTkEntry(window, width=250, show="*", fg_color="#09090b", border_color="#6366f1")
         entry_pwd.pack(pady=5)
         
         error_label = ctk.CTkLabel(window, text="", font=("Segoe UI", 12, "bold"), text_color="#ef4444")
@@ -138,8 +138,8 @@ class DiaryApp(ctk.CTk):
         btn_frame = ctk.CTkFrame(window, fg_color="transparent")
         btn_frame.pack(pady=15)
 
-        ctk.CTkButton(btn_frame, text="Войти", width=100, fg_color="#3b82f6", hover_color="#2563eb", command=check_password).pack(side="left", padx=10)
-        ctk.CTkButton(btn_frame, text="Отмена", width=100, fg_color="transparent", border_color="#ef4444", border_width=1.5, text_color="#ef4444", hover_color="#0f172a", command=lambda: self.close_active_window(window)).pack(side="left", padx=10)
+        ctk.CTkButton(btn_frame, text="Войти", width=100, fg_color="#6366f1", hover_color="#4f46e5", command=check_password).pack(side="left", padx=10)
+        ctk.CTkButton(btn_frame, text="Отмена", width=100, fg_color="transparent", border_color="#ef4444", border_width=1.5, text_color="#ef4444", hover_color="#09090b", command=lambda: self.close_active_window(window)).pack(side="left", padx=10)
 
     def login_student(self):
         self.is_teacher_mode = False
@@ -160,7 +160,7 @@ class DiaryApp(ctk.CTk):
         bottom_frame = ctk.CTkFrame(self.current_frame, fg_color="transparent")
         bottom_frame.pack(side="bottom", pady=10)
         
-        ctk.CTkButton(bottom_frame, text="➕ Добавить", font=("Segoe UI", 14, "bold"), fg_color="#3b82f6", hover_color="#1d4ed8", height=40, width=150, command=self.open_add_student_window).pack(side="left", padx=5)
+        ctk.CTkButton(bottom_frame, text="➕ Добавить", font=("Segoe UI", 14, "bold"), fg_color="#6366f1", hover_color="#1d4ed8", height=40, width=150, command=self.open_add_student_window).pack(side="left", padx=5)
         ctk.CTkButton(bottom_frame, text="🗑 Удалить", font=("Segoe UI", 14, "bold"), fg_color="transparent", border_color="#ef4444", border_width=1.5, text_color="#ef4444", height=40, width=150, command=self.open_delete_student_window).pack(side="left", padx=5)
         ctk.CTkButton(bottom_frame, text="↩ Сменить роль", font=("Segoe UI", 14, "bold"), fg_color="#475569", hover_color="#64748b", height=40, width=150, command=self.show_login_screen).pack(side="left", padx=5)
         ctk.CTkButton(bottom_frame, text="⏻ Выйти", font=("Segoe UI", 14, "bold"), fg_color="#dc2626", hover_color="#b91c1c", height=40, width=150, command=self.exit_app).pack(side="left", padx=5)
@@ -245,7 +245,7 @@ class DiaryApp(ctk.CTk):
                                 # Подсветка при наведении
                                 for widget in (card, student_label, score_label):
                                     widget.bind("<Button-1>", lambda event, s=student: self.show_student_profile(s, is_teacher=True))
-                                    widget.bind("<Enter>", lambda event, c=card: c.configure(fg_color="#1e3a8a"))
+                                    widget.bind("<Enter>", lambda event, c=card: c.configure(fg_color="#312e81"))
                                     widget.bind("<Leave>", lambda event, c=card: c.configure(fg_color=const.THEME["main_bg"]))
 
         search_entry.bind("<KeyRelease>", lambda e: render_list(search_entry.get().strip().lower()))
@@ -260,19 +260,19 @@ class DiaryApp(ctk.CTk):
         self.active_window = window
         window.title("Калькулятор оценки")
         self.center_window(window, 420, 450)
-        window.configure(fg_color="#1e293b")
+        window.configure(fg_color="#18181b")
         window.attributes("-topmost", True)
         window.protocol("WM_DELETE_WINDOW", lambda: self.close_active_window(window))
 
         ctk.CTkLabel(window, text="🧮 Умный калькулятор оценки", font=("Segoe UI", 20, "bold"), text_color="#f8fafc").pack(pady=(20, 10))
 
         ctk.CTkLabel(window, text="Выберите предмет:", font=("Segoe UI", 13, "bold"), text_color="#cbd5e1").pack(anchor="w", padx=40, pady=(5, 2))
-        combo_subject = ctk.CTkComboBox(window, values=list(const.SUBJECTS.values()), height=38, fg_color="#0f172a", border_color="#334155", state="readonly")
+        combo_subject = ctk.CTkComboBox(window, values=list(const.SUBJECTS.values()), height=38, fg_color="#09090b", border_color="#27272a", state="readonly")
         combo_subject.pack(fill="x", padx=40)
         combo_subject.set(list(const.SUBJECTS.values())[0])
 
         ctk.CTkLabel(window, text="Желаемая оценка (например, 5 или 4.5):", font=("Segoe UI", 13, "bold"), text_color="#cbd5e1").pack(anchor="w", padx=40, pady=(15, 2))
-        entry_target = ctk.CTkEntry(window, height=38, fg_color="#0f172a", border_color="#334155")
+        entry_target = ctk.CTkEntry(window, height=38, fg_color="#09090b", border_color="#27272a")
         entry_target.pack(fill="x", padx=40)
 
         result_label = ctk.CTkLabel(window, text="", font=("Segoe UI", 14), text_color="#22c55e", wraplength=340, justify="center")
@@ -338,7 +338,7 @@ class DiaryApp(ctk.CTk):
             )
 
         ctk.CTkButton(window, text="Рассчитать", font=("Segoe UI", 15, "bold"), height=45,
-                      fg_color="#3b82f6", hover_color="#2563eb", command=calculate).pack(pady=10, fill="x", padx=40)
+                      fg_color="#6366f1", hover_color="#4f46e5", command=calculate).pack(pady=10, fill="x", padx=40)
 
     def open_add_student_window(self):
         if self.active_window is not None and self.active_window.winfo_exists():
@@ -349,7 +349,7 @@ class DiaryApp(ctk.CTk):
         self.active_window = window
         window.title("Добавить ученика")
         self.center_window(window, 420, 580) 
-        window.configure(fg_color="#1e293b")
+        window.configure(fg_color="#18181b")
         window.attributes("-topmost", True)
         window.protocol("WM_DELETE_WINDOW", lambda: self.close_active_window(window))
 
@@ -357,7 +357,7 @@ class DiaryApp(ctk.CTk):
 
         def create_field(parent, label_text):
             ctk.CTkLabel(parent, text=label_text, font=("Segoe UI", 13), text_color="#cbd5e1").pack(anchor="w", padx=40, pady=(8, 2))
-            entry = ctk.CTkEntry(parent, height=38, fg_color="#0f172a", border_color="#334155", border_width=1, corner_radius=8)
+            entry = ctk.CTkEntry(parent, height=38, fg_color="#09090b", border_color="#27272a", border_width=1, corner_radius=8)
             entry.pack(fill="x", padx=40)
             return entry
 
@@ -434,7 +434,7 @@ class DiaryApp(ctk.CTk):
         self.active_window = window
         window.title("Удалить ученика")
         self.center_window(window, 400, 250)
-        window.configure(fg_color="#1e293b")
+        window.configure(fg_color="#18181b")
         window.attributes("-topmost", True)
         window.protocol("WM_DELETE_WINDOW", lambda: self.close_active_window(window))
 
@@ -443,7 +443,7 @@ class DiaryApp(ctk.CTk):
         student_strings = [f"{s.full_name} {s.name} (гр. {getattr(s, 'group_num', 1)})" for s in self.group.list_students]
         
         combo_student = ctk.CTkComboBox(window, values=student_strings, width=300, height=40, 
-                                        fg_color="#0f172a", border_color="#334155", state="readonly")
+                                        fg_color="#09090b", border_color="#27272a", state="readonly")
         combo_student.pack(pady=10)
         combo_student.set(student_strings[0])
 
@@ -466,7 +466,7 @@ class DiaryApp(ctk.CTk):
 
     def show_student_profile(self, student, is_teacher=False):
         self.clear_screen()
-        self.configure(fg_color="#0f172a")
+        self.configure(fg_color="#09090b")
         
         self.current_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.current_frame.pack(pady=20, padx=40, fill="both", expand=True)
@@ -481,18 +481,18 @@ class DiaryApp(ctk.CTk):
         bottom_frame.pack(side="bottom", pady=20)
 
         if is_teacher:
-            ctk.CTkButton(bottom_frame, text="➕ Поставить оценку", font=("Segoe UI", 16, "bold"), fg_color="#3b82f6", hover_color="#2563eb", corner_radius=8, height=45, width=200, command=lambda: self.open_add_grade_window(student, is_teacher)).pack(side="left", padx=10)
-            ctk.CTkButton(bottom_frame, text="🗑 Удалить оценку", font=("Segoe UI", 16, "bold"), fg_color="transparent", border_color="#ef4444", border_width=2, height=45, width=200, text_color="#ef4444", hover_color="#1e293b", corner_radius=8, command=lambda: self.open_delete_grade_window(student, is_teacher)).pack(side="left", padx=10)
+            ctk.CTkButton(bottom_frame, text="➕ Поставить оценку", font=("Segoe UI", 16, "bold"), fg_color="#6366f1", hover_color="#4f46e5", corner_radius=8, height=45, width=200, command=lambda: self.open_add_grade_window(student, is_teacher)).pack(side="left", padx=10)
+            ctk.CTkButton(bottom_frame, text="🗑 Удалить оценку", font=("Segoe UI", 16, "bold"), fg_color="transparent", border_color="#ef4444", border_width=2, height=45, width=200, text_color="#ef4444", hover_color="#18181b", corner_radius=8, command=lambda: self.open_delete_grade_window(student, is_teacher)).pack(side="left", padx=10)
             ctk.CTkButton(bottom_frame, text="↩ Назад к списку", font=("Segoe UI", 16, "bold"), fg_color="#475569", hover_color="#64748b", corner_radius=8, height=45, width=200, command=self.show_teacher_menu).pack(side="left", padx=10)
         else:
-            ctk.CTkButton(bottom_frame, text="🧮 Рассчитать оценку", font=("Segoe UI", 16, "bold"), fg_color="#eab308", hover_color="#ca8a04", text_color="#0f172a", corner_radius=8, height=45, width=200, command=lambda: self.open_calculator_window(student)).pack(side="left", padx=10)
-            ctk.CTkButton(bottom_frame, text="👥 Моя группа", font=("Segoe UI", 16, "bold"), fg_color="#3b82f6", hover_color="#2563eb", corner_radius=8, height=45, width=200, command=lambda: self.show_my_group_gui(student)).pack(side="left", padx=10)
+            ctk.CTkButton(bottom_frame, text="🧮 Рассчитать оценку", font=("Segoe UI", 16, "bold"), fg_color="#eab308", hover_color="#ca8a04", text_color="#09090b", corner_radius=8, height=45, width=200, command=lambda: self.open_calculator_window(student)).pack(side="left", padx=10)
+            ctk.CTkButton(bottom_frame, text="👥 Моя группа", font=("Segoe UI", 16, "bold"), fg_color="#6366f1", hover_color="#4f46e5", corner_radius=8, height=45, width=200, command=lambda: self.show_my_group_gui(student)).pack(side="left", padx=10)
             ctk.CTkButton(bottom_frame, text="↩ Назад", font=("Segoe UI", 16, "bold"), fg_color="#475569", hover_color="#64748b", corner_radius=8, height=45, width=200, command=self.show_student_menu).pack(side="left", padx=10)
 
-        table_container = ctk.CTkFrame(self.current_frame, fg_color="#1e293b", corner_radius=15)
+        table_container = ctk.CTkFrame(self.current_frame, fg_color="#18181b", corner_radius=15)
         table_container.pack(fill="both", expand=True, padx=80, pady=10)
 
-        list_frame = ctk.CTkScrollableFrame(table_container, fg_color="#1e293b", corner_radius=0, scrollbar_fg_color="#1e293b", scrollbar_button_color="#334155")
+        list_frame = ctk.CTkScrollableFrame(table_container, fg_color="#18181b", corner_radius=0, scrollbar_fg_color="#18181b", scrollbar_button_color="#27272a")
         list_frame.pack(fill="both", expand=True, padx=2, pady=2)
         
         list_frame.grid_columnconfigure(1, weight=1) # Растягиваем колонку с оценками
@@ -530,7 +530,7 @@ class DiaryApp(ctk.CTk):
 
                     color = get_grade_color(g)
                     ctk.CTkLabel(current_row_frame, text=str(g), font=("Segoe UI", 16, "bold"),
-                        fg_color=color, text_color="#0f172a", width=35, height=35, corner_radius=8).pack(side="left", padx=3)
+                        fg_color=color, text_color="#09090b", width=35, height=35, corner_radius=8).pack(side="left", padx=3)
                     
                     count_in_row += 1
                 
@@ -553,7 +553,7 @@ class DiaryApp(ctk.CTk):
             overall_text = "🏆 Общая средняя оценка: нет оценок"
             avg_color = "#475569"
 
-        ctk.CTkLabel(self.current_frame, text=overall_text, font=("Segoe UI", 20, "bold"), text_color="#0f172a", fg_color=avg_color, corner_radius=12).pack(pady=15, ipadx=30, ipady=10)
+        ctk.CTkLabel(self.current_frame, text=overall_text, font=("Segoe UI", 20, "bold"), text_color="#09090b", fg_color=avg_color, corner_radius=12).pack(pady=15, ipadx=30, ipady=10)
 
     def show_my_group_gui(self, student):
         self.clear_screen()
@@ -571,7 +571,7 @@ class DiaryApp(ctk.CTk):
 
         ctk.CTkButton(self.current_frame, text="↩ Назад в дневник", font=("Segoe UI", 16, "bold"), fg_color="#475569", hover_color="#64748b", corner_radius=8, height=45, width=220, command=lambda: self.show_student_profile(student, is_teacher=False)).pack(side="bottom", pady=20)
 
-        list_frame = ctk.CTkScrollableFrame(self.current_frame, fg_color="#1e293b", corner_radius=15)
+        list_frame = ctk.CTkScrollableFrame(self.current_frame, fg_color="#18181b", corner_radius=15)
         list_frame.pack(fill="both", expand=True, pady=10, padx=50)
 
         for index, classmate in enumerate(my_groupmates):
@@ -581,12 +581,12 @@ class DiaryApp(ctk.CTk):
             
             medal = "🥇" if place == 1 else "🥈" if place == 2 else "🥉" if place == 3 else ""
 
-            card_color = "#1e293b" if is_me else "#0f172a" 
+            card_color = "#18181b" if is_me else "#09090b" 
             
             if place == 1: border_color = "#eab308"
             elif place == 2: border_color = "#94a3b8"
             elif place == 3: border_color = "#b45309"
-            else: border_color = "#3b82f6" if is_me else "#334155"
+            else: border_color = "#6366f1" if is_me else "#27272a"
                 
             border_w = 2 if (is_me or place <= 3) else 1
 
@@ -598,7 +598,7 @@ class DiaryApp(ctk.CTk):
             ctk.CTkLabel(card, text=name_text, font=("Segoe UI", 18, "bold"), text_color="#ffffff" if is_me else "#cbd5e1", anchor="w").grid(row=0, column=0, padx=(20, 10), pady=15, sticky="w")
 
             if is_me:
-                ctk.CTkLabel(card, text="ВЫ", font=("Segoe UI", 12, "bold"), text_color="#3b82f6", fg_color="#1e3a8a", corner_radius=4, width=30, height=20).grid(row=0, column=2, padx=10, pady=15, sticky="w")
+                ctk.CTkLabel(card, text="ВЫ", font=("Segoe UI", 12, "bold"), text_color="#6366f1", fg_color="#312e81", corner_radius=4, width=30, height=20).grid(row=0, column=2, padx=10, pady=15, sticky="w")
 
             if is_me:
                 score_text = f"{avg_score:.2f}" if avg_score > 0 else "Нет"
@@ -628,19 +628,19 @@ class DiaryApp(ctk.CTk):
         self.active_window = window
         window.title("Добавить оценку")
         self.center_window(window, 400, 380)
-        window.configure(fg_color="#1e293b")
+        window.configure(fg_color="#18181b")
         window.attributes("-topmost", True)
         window.protocol("WM_DELETE_WINDOW", lambda: self.close_active_window(window))
 
         ctk.CTkLabel(window, text=f"Ученик: {student.full_name}", font=("Segoe UI", 18, "bold"), text_color="#f8fafc").pack(pady=(20, 15))
 
         ctk.CTkLabel(window, text="Выберите предмет:", font=("Segoe UI", 13, "bold"), text_color="#cbd5e1").pack(anchor="w", padx=40, pady=(5, 2))
-        combo_subject = ctk.CTkComboBox(window, values=list(const.SUBJECTS.values()), height=35, fg_color="#0f172a", border_color="#334155", state="readonly")
+        combo_subject = ctk.CTkComboBox(window, values=list(const.SUBJECTS.values()), height=35, fg_color="#09090b", border_color="#27272a", state="readonly")
         combo_subject.pack(fill="x", padx=40)
         combo_subject.set(list(const.SUBJECTS.values())[0])
 
         ctk.CTkLabel(window, text="Оценка (1-5):", font=("Segoe UI", 13, "bold"), text_color="#cbd5e1").pack(anchor="w", padx=40, pady=(10, 2))
-        entry_grade = ctk.CTkEntry(window, height=35, fg_color="#0f172a", border_color="#334155")
+        entry_grade = ctk.CTkEntry(window, height=35, fg_color="#09090b", border_color="#27272a")
         entry_grade.pack(fill="x", padx=40)
 
         # МЕСТО ДЛЯ ВЫВОДА ОШИБКИ (красный текст под полем)
@@ -688,7 +688,7 @@ class DiaryApp(ctk.CTk):
         self.active_window = window
         window.title("Удалить оценку")
         self.center_window(window, 400, 400)
-        window.configure(fg_color="#1e293b")
+        window.configure(fg_color="#18181b")
         window.attributes("-topmost", True)
         window.protocol("WM_DELETE_WINDOW", lambda: self.close_active_window(window))
 
@@ -697,7 +697,7 @@ class DiaryApp(ctk.CTk):
         ctk.CTkLabel(window, text="Выберите предмет:", font=("Segoe UI", 13, "bold"), text_color="#cbd5e1").pack(anchor="w", padx=40, pady=(5, 2))
         
         # ДОБАВЛЕН state="readonly"
-        combo_subject = ctk.CTkComboBox(window, values=list(const.SUBJECTS.values()), height=35, fg_color="#0f172a", border_color="#334155", state="readonly")
+        combo_subject = ctk.CTkComboBox(window, values=list(const.SUBJECTS.values()), height=35, fg_color="#09090b", border_color="#27272a", state="readonly")
         combo_subject.pack(fill="x", padx=40)
         combo_subject.set(list(const.SUBJECTS.values())[0])
 
@@ -705,7 +705,7 @@ class DiaryApp(ctk.CTk):
         grade_var = ctk.StringVar()
         
         # ДОБАВЛЕН state="readonly"
-        combo_grade = ctk.CTkComboBox(window, values=["Нет оценок"], variable=grade_var, height=35, fg_color="#0f172a", border_color="#334155", state="readonly")
+        combo_grade = ctk.CTkComboBox(window, values=["Нет оценок"], variable=grade_var, height=35, fg_color="#09090b", border_color="#27272a", state="readonly")
         combo_grade.pack(fill="x", padx=40)
 
         def update_grades_list(event=None):
@@ -751,12 +751,12 @@ class DiaryApp(ctk.CTk):
 
     def show_student_menu(self):
         self.clear_screen()
-        self.configure(fg_color="#0f172a")
+        self.configure(fg_color="#09090b")
 
         self.current_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.current_frame.pack(expand=True, fill="both")
 
-        login_card = ctk.CTkFrame(self.current_frame, width=450, height=580, fg_color="#1e293b", corner_radius=20)
+        login_card = ctk.CTkFrame(self.current_frame, width=450, height=580, fg_color="#18181b", corner_radius=20)
         login_card.place(relx=0.5, rely=0.45, anchor="center") 
 
         ctk.CTkLabel(login_card, text="🎓 Вход для Ученика", font=("Segoe UI", 28, "bold"), text_color="#f8fafc").pack(pady=(30, 5))
@@ -767,7 +767,7 @@ class DiaryApp(ctk.CTk):
 
         def create_field(parent, label_text):
             ctk.CTkLabel(parent, text=label_text, font=("Segoe UI", 13, "bold"), text_color="#cbd5e1").pack(anchor="w", pady=(10, 2))
-            entry = ctk.CTkEntry(parent, height=40, fg_color="#0f172a", border_color="#334155", border_width=1, corner_radius=8)
+            entry = ctk.CTkEntry(parent, height=40, fg_color="#09090b", border_color="#27272a", border_width=1, corner_radius=8)
             entry.pack(fill="x")
             return entry
 
@@ -816,12 +816,12 @@ class DiaryApp(ctk.CTk):
 
         ctk.CTkButton(bottom_frame, text="↩ Сменить роль", font=("Segoe UI", 14, "bold"), 
                       height=40, width=180, fg_color="transparent", border_color="#475569", 
-                      border_width=1.5, text_color="#94a3b8", hover_color="#1e293b", corner_radius=8,
+                      border_width=1.5, text_color="#94a3b8", hover_color="#18181b", corner_radius=8,
                       command=self.show_login_screen).pack(side="left", padx=15)
         
         ctk.CTkButton(bottom_frame, text="⏻ Выйти из программы", font=("Segoe UI", 14, "bold"), 
                       height=40, width=200, fg_color="transparent", border_color="#ef4444", 
-                      border_width=1.5, text_color="#ef4444", hover_color="#1e293b", corner_radius=8,
+                      border_width=1.5, text_color="#ef4444", hover_color="#18181b", corner_radius=8,
                       command=self.exit_app).pack(side="left", padx=15)
 
 # БЛОК ЗАПУСКА

@@ -64,9 +64,9 @@ MENU_STUDENT = """Ваш электронный дневник (Режим Уч�
 """
 
 THEME = {
-    "main_bg": "#0f172a",
-    "card_bg": "#1e293b",
+    "main_bg": "#09090b",
+    "card_bg": "#18181b",
     "text_main": "#f8fafc",
     "text_muted": "#94a3b8",
-    "border": "#334155"
+    "border": "#27272a"
 }
